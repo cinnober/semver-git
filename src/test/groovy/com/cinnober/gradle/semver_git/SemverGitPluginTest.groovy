@@ -39,6 +39,12 @@ class SemverGitPluginTest extends GroovyTestCase {
     void testParseVersion123beta() {
         testParseVersion("1.2.3-beta", [1,2,3,"beta"]);
     }
+    void testParseVersionv123beta() {
+        testParseVersion("v1.2.3-beta", [1,2,3,"beta"]);
+    }
+    void testParseVersionprefix123beta() {
+        testParseVersion("prefix-1.2.3-beta", [1,2,3,"beta"]);
+    }
     void testParseVersion123snapshot() {
         testParseVersion("1.2.3-SNAPSHOT", [1,2,3,"SNAPSHOT"]);
     }
@@ -50,9 +56,6 @@ class SemverGitPluginTest extends GroovyTestCase {
     }
     void testFailParseVersion_1() {
         shouldFail({SemverGitPlugin.parseVersion("1")});
-    }
-    void testFailParseVersion_a123() {
-        shouldFail({SemverGitPlugin.parseVersion("a1.2.3")});
     }
     void testFailParseVersion_123a() {
         shouldFail({SemverGitPlugin.parseVersion("1.2.3a")});
